@@ -1,9 +1,6 @@
 # HackTJ 2015
 # Kevin
 
-from tkinter import Tk, Frame, BOTH, PhotoImage, Label
-from random import random
-
 topping = "topping"
 condiment = "condiment"
 meat = "meat"
@@ -55,6 +52,8 @@ class Item():
 		return items
 
 def main():
+	from tkinter import Tk, Frame, BOTH, PhotoImage, Label
+	from random import random
 	root = Tk()
 	root.title("Testing images")
 	items = Item.catalogue()
