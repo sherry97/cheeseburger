@@ -1,13 +1,22 @@
-class Backpack(Frame):
+class Backpack():
 	backpack = []
 
-	def contents():
-		for x in backpack:
-			print(o)
+	def __init__():
+		self.backpack = backpack
 
-	def add(String o):
+	def display():
+		print(backpack)
+
+	def contents():
+		return backpack
+
+	def add(o):
 		backpack[-1] = o
-		return o
+		return backpack
+
+	def remove(o):
+		backpack.remove(o)
+		return backpack
 
 	def size():
 		return len(backpack)
