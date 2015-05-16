@@ -1,7 +1,8 @@
 # HackTJ 2015
 # Kevin
 
-from Tkinter import Tk, Frame, BOTH
+from tkinter import Tk, Frame, BOTH, PhotoImage, Label
+from random import random
 
 topping = "topping"
 condiment = "condiment"
@@ -10,7 +11,6 @@ bun = "bun"
 cheese = "cheese"
 
 class Item():
-  
 	def __init__(self, name, category, calories, delish, filename):
 		self.name = name
 		self.category = category
@@ -27,6 +27,8 @@ class Item():
 		return self.delish
 	def category(self):
 		return self.category
+	def filename(self):
+		return self.filename
 
 	def __str__(self):
 		return "<{}: {}; {} cal>".format(category, name, calories)
@@ -51,3 +53,14 @@ class Item():
 		items.append(Item("regular", bun, 10, 5, "regular.png"))
 		items.append(Item("sesame", bun, 10, 5, "sesame.png"))
 		return items
+
+def main():
+	root = Tk()
+	root.title("Testing images")
+	items = Item.catalogue()
+	photo = PhotoImage(file = items[int(random() * len(items))].filename)
+	label = Label(root, image=photo)
+	label.grid()
+	root.mainloop()
+
+if __name__ == '__main__': main()
