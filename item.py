@@ -17,6 +17,10 @@ class Item():
 
 	def calories(self):
 		return self.calories
+	def name(self):
+		return self.name
+	def category(self):
+		return self.category
 
 	def __str__(self):
 		return "<{}: {}; {} cal>".format(category, name, calories)
