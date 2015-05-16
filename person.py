@@ -1,49 +1,50 @@
+from backpack import Backpack
+from cheeseburger import Cheeseburger
+
 class Person():
 	hunger = 50
 	happy = 5
 	backpack = Backpack();
 
-	def __init__():
+#	def __init__(self):
+#		self.hunger = 50
+#		self.happy = 5
+#		self.backpack = Backpack();
+
+	def __init__(self, hunger=50, happy=5, backpack=Backpack()):
 		self.hunger = hunger
 		self.happy = happy
-		self.backpack = Backpack();
+		self.backpack = backpack
 
-	def eat(c):
-		hunger += c.calories();
-		happy += c.delish();
-		if hunger > 100: hunger = 100
-		if happy > 10: happy = 10
-		return hunger
+	def eat(self, c):
+		self.hunger += c.calories
+		self.happy += c.delish
+		if self.hunger > 100: self.hunger = 100
+		if self.happy > 10: self.happy = 10
 
-	def move():
-		hunger -= 5
-		happy -= .5
+	def move(self):
+		self.hunger -= 5
+		self.happy -= .5
 
-	def hunger():
-		return hunger
+	def sethunger(self, val):
+		self.hunger = val
+		return self.hunger
 
-	def happy():
-		return happy
+	def sethappy(self, val):
+		self.happy = val
+		return self.happy
 
-	def sethunger(val):
-		hunger = val
-		return hunger
+	def viewItem(self, i):
+		return self.backpack.get(i)
 
-	def sethappy(val):
-		happy = val
-		return happy
+	def backpack(self):
+		self.backpack.display();
 
-	def viewItem(i):
-		return backpack.get(i)
+	def backpackContents(self):
+		return self.backpack.contents();
 
-	def backpack():
-		backpack.display();
+	def addToBackpack(self, o):
+		self.backpack.add(o)
 
-	def backpackContents():
-		return backpack.contents();
-
-	def addToBackpack(o):
-		backpack.add(o)
-
-	def removeFromBackpack(o):
-		backpack.remove(o)
+	def removeFromBackpack(self, o):
+		self.backpack.remove(o)

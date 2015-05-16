@@ -1,25 +1,24 @@
 class Backpack():
-	backpack = []
 
-	def __init__():
-		self.backpack = backpack
+	def __init__(self):
+		self.backpack = []
 
-	def display():
-		print(backpack)
+	def display(self):
+		print(self.backpack)
 
-	def contents():
-		return backpack
+	def contents(self):
+		return self.backpack
 
-	def add(o):
-		backpack[-1] = o
-		return backpack
+	def add(self, o):
+		self.backpack.append(o)
+		return self.backpack
 
-	def remove(o):
-		backpack.remove(o)
-		return backpack
+	def remove(self, o):
+		self.backpack.remove(o)
+		return self.backpack
 
-	def get(i):
-		return backpack[i]
+	def get(self, i):
+		return self.backpack[i]
 
-	def size():
-		return len(backpack)
+	def size(self):
+		return len(self.backpack)
