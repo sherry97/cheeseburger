@@ -29,14 +29,21 @@ class Person():
 		hunger = val
 		return hunger
 
+	def sethappy(val):
+		happy = val
+		return happy
+
+	def viewItem(i):
+		return backpack.get(i)
+
 	def backpack():
 		backpack.display();
 
 	def backpackContents():
 		return backpack.contents();
 
-	def addToBackpack(i):
-		backpack.add(i)
+	def addToBackpack(o):
+		backpack.add(o)
 
-	def removeFromBackpack(i):
-		backpack.remove(i)
+	def removeFromBackpack(o):
+		backpack.remove(o)
