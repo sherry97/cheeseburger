@@ -18,5 +18,8 @@ class Backpack():
 		backpack.remove(o)
 		return backpack
 
+	def get(i):
+		return backpack[i]
+
 	def size():
 		return len(backpack)
