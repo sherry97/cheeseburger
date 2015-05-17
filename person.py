@@ -14,7 +14,7 @@ class Person():
 		self.backpack = backpack
 
 	def eat(self, c):
-		self.hunger += c.calories
+		self.hunger += c.calories//10
 		self.happy += c.delish
 		if self.hunger > 100: self.hunger = 100
 		if self.happy > 10: self.happy = 10

@@ -14,34 +14,25 @@ def goOutside():
 	print('\nYou lift the plank of wood and unlatch the door before opening it. A biting wind blasts your face as you stumble outside, yanking the door shut behind you.')	
 		
 def lookAround():
-	print('\nEverything is white. The houses and the debris are all covered in snow. The figures of fallen trees are only bumps, covered in layers of ice. The street is filled with empty cars, stuck in the permafrost.')
-	input()
-	print('\n You look up at the sky, but no bird silhouette interrupts the unending gray. You haven’t seen one in a while now.')
-	input()
+	input('\nEverything is white. The houses and the debris are all covered in snow. The figures of fallen trees are only bumps, covered in layers of ice. The street is filled with empty cars, stuck in the permafrost.')
+	input('\n You look up at the sky, but no bird silhouette interrupts the unending gray. You haven’t seen one in a while now.')
 	
 def focus():
-	print('\nThe snow crunches under your boots as you step towards the street. You have to go much further than usual today.')
-	input()
-	print('\nIn a few minutes you pass the convenience store with the truck lodged in its front entrance. There is a path cleared of snow and glass that you made at the beginning.')
-	input()
+	input('\nThe snow crunches under your boots as you step towards the street. You have to go much further than usual today.')
+	input('\nIn a few minutes you pass the convenience store with the truck lodged in its front entrance. There is a path cleared of snow and glass that you made at the beginning.')
 	print('\nWithout its tasteless food you would have starved to death a long time ago. But there are other places. Better places, with better food. That’s where you are going today, for better food. For a cheeseburger.')
 	print('\n(a) Walk to the supermarket.')
 	input('enter letter: ')
 	walkToMarket()
 
 def walkToMarket():
-	print('\nThe overcast skies are slumbering today, like everything else. You pass by obliterated houses, some smashed, as if by a giant fist, some dissolved into rubble.')
-	input()
-	print('\nAt last you reach the supermarket. The walls are more holes than plaster. You hope they don’t choose today to fall. You step inside.')
-	input()
+	input('\nThe overcast skies are slumbering today, like everything else. You pass by obliterated houses, some smashed, as if by a giant fist, some dissolved into rubble.')
+	input('\nAt last you reach the supermarket. The walls are more holes than plaster. You hope they don’t choose today to fall. You step inside.')
 
 def intro():
-	print("\nYou add a log to the fire. Your poker glows red-orange as the fire begins to consume the new log. You place the poker into its holder next to the fireplace, a few feet away from the blanket-covered walls.")
-	input()
-	print('\nThe room is tiny. Next to the fireplace is a small beige door. Across from the fireplace is the door to the outside, blocked by a long white couch, spanning almost the entire wall.')
-	input()
-	print("\nSqueezed between the left end of the couch and the wall is a wooden table with your clothes for outside and a framed picture laying down.")
-	input()
+	input("You add a log to the fire. Your poker glows red-orange as the fire begins to consume the new log. You place the poker into its holder next to the fireplace, a few feet away from the blanket-covered walls.")
+	input('\nThe room is tiny. Next to the fireplace is a small beige door. Across from the fireplace is the door to the outside, blocked by a long white couch, spanning almost the entire wall.')
+	input("\nSqueezed between the left end of the couch and the wall is a wooden table with your clothes for outside and a framed picture laying down.")
 	table = False
 	couch = False
 	focused = False

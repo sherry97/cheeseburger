@@ -88,7 +88,7 @@ def pos_loop(canvas, root, M_WIDTH, M_HEIGHT, G_WIDTH, G_HEIGHT, maze, n = 4):
 		canvas.create_rectangle(G_WIDTH / M_WIDTH * x, G_HEIGHT / M_HEIGHT * y, 
 				G_WIDTH / M_WIDTH * (x + 1), G_HEIGHT / M_HEIGHT * (y + 1), fill = color)
 
-	canvas.itemconfig(id2, text = "  position: ("+str(x) + ", " + str(y) + ")\n  hunger: {}/100 \n  happy: {}/10\n  q or esc to exit \n  runtime: {}".format(person.hunger, round(person.happy, 3), int(time() - START_TIME)))
+	canvas.itemconfig(id2, text = "  position: ("+str(x) + ", " + str(y) + ")\n  hunger: {}/100 \n  happy: {}/10\n  [q] or [esc] to exit \n  runtime: {}".format(person.hunger, round(person.happy, 3), int(time() - START_TIME)))
 	string = '  Stuff in Backpack'
 	for k, item in enumerate(person.backpack.backpack):
 		string += '\n\t-->' + item.name if k == active_item_index else '\n\t' + item.name
