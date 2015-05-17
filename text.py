@@ -9,25 +9,30 @@ def goOutside():
 def main():
 	print("You add a log to the fire. Your poker glows red-orange as the fire begins to consume the new log. You place the poker into its holder next to the fireplace, a few feet away from the blanket-covered walls. ")
 	print('The room is tiny and sparsely decorated. The only breaks in the wall-carpets are the fireplace and two doors. Across from the fireplace is the smaller door. In front of the other door, the one to outside, is a long white couch that almost spans that entire wall. Squeezed between the left end of the couch and the wall is a wooden table with your clothes for outside. Against the fourth wall is a desk. A framed picture lays facedown on it.')
-	opt = input('\n(a) Go to the wooden table. \n(b) Move the couch. \n(c) Look at the picture. \n(d) Look at the fireplace.')
+	print('\n(a) Go to the wooden table. \n(b) Move the couch. \n(c) Look at the picture. \n(d) Look at the fireplace.')
+	opt = input('enter letter: ')
 	if opt == 'a' or opt == 'b':
 		goOutside()
 	if opt == 'c':
 		print('You walk up to the desk, reaching for the picture. Your fingers brush it, and you pull away. It’s too painful.')
-		opt = input('\n(a) Go to the wooden table. \n(b) Move the couch. \n(c) Look at the fireplace.')
+		print('\n(a) Go to the wooden table. \n(b) Move the couch. \n(c) Look at the fireplace.')
+		opt = input('enter letter: ')
 		if opt == 'a' or opt == 'b':
 			goOutside()
 		if opt == 'c':
 			print('The fire is burning brightly now. It should last while you’re out.')
-			opt = input('\n(a) Go to the wooden table. \n(b) Move the couch.')
+			print('\n(a) Go to the wooden table. \n(b) Move the couch.')
+			opt = input('enter letter: ')
 			goOutside()
 	if opt == 'd':
 		print('The fire is burning brightly now. It should last while you’re out.')
-		opt = input('\n(a) Go the wooden table. \n(b) Move the couch. \n(c) Look at the picture.')
+		print('\n(a) Go the wooden table. \n(b) Move the couch. \n(c) Look at the picture.')
+		opt = input('enter letter: ')
 		if opt == 'a' or opt == 'b':
 			goOutside()
 		else:
 			print('You walk up to the desk, reaching for the picture. Your fingers brush it, and you pull away. It’s too painful.')
-			opt = input('\n(a) Go to the wooden table. \n(b) Move the couch.')
+			print('\n(a) Go to the wooden table. \n(b) Move the couch.')
+			opt = input('enter letter: ')
 			goOutside()
 if __name__ == '__main__': main()
