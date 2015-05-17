@@ -18,7 +18,8 @@ class Item():
 
 	def __str__(self):
 		return "<{}: {}; {} cal>".format(self.category, self.name, self.calories)
-
+	def __repr__(self):
+		return "<{}: {}; {} cal>".format(self.category, self.name, self.calories)
 	def catalogue():
 		items = []
 		# name, category, calories, delishness, filename

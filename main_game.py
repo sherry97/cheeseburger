@@ -4,7 +4,7 @@ from tkinter import *
 from random import random, shuffle, randrange
 from item import Item
 from time import time
-from maze import Maze
+from person import Person
 
 color_coding = {"meat": "#993300", "topping": "#99FF66", "condiment": "#FFCC00",
 	"bun": "#996600", "cheese": "#FFFF66", "blank": "#000000", "wall": "#FFFFFF"}
@@ -16,20 +16,20 @@ color_coding = {"meat": "#993300", "topping": "#99FF66", "condiment": "#FFCC00",
 # 	return canvas
 
 position = (1, 1)
-MAZE = None
+# MAZE = None ; CANVAS = None
 
 def position_works(dx, dy):
-	global position, MAZE
+	global position, maze
 	new_x = dx + position[0]
 	new_y = dy + position[1]
-	if new_x < 0 or new_y < 0 or new_x > len(MAZE) - 1 or new_y > len(MAZE[0]): return False
-	if MAZE[new_x][new_y] != "blank": return False
-	print("should move now")
-	print("pos: {} ; new_pos: {}".format(position, (new_x, new_y)))
+	if new_x < 0 or new_y < 0 or new_x > len(maze) - 1 or new_y > len(maze[0]) - 1: return False
+	if maze[new_x][new_y] == "wall": return False
+	#print("should move now")
+	#print("pos: {} ; new_pos: {}".format(position, (new_x, new_y)))
 	return True
 
 def key(event):
-	global position
+	global position, canvas, maze, person
 	"""shows key or tk code for the key"""
 	if event.keysym == 'Escape':
 		root.destroy()
@@ -39,7 +39,9 @@ def key(event):
 		pass
 	else:
 		# f1 to f12, shift keys, caps lock, Home, End, Delete ...
-		print( 'Special Key %r' % event.keysym )
+		x = position[0]
+		y = position[1]
+		# print( 'Special Key %r' % event.keysym )
 		if event.keysym == 'Up':
 			if position_works(0, -1):
 				position = (position[0], position[1] - 1)
@@ -47,22 +49,38 @@ def key(event):
 			if position_works(0, 1):
 				position = (position[0], position[1] + 1)
 		if event.keysym == 'Right':
-			if position_works(0, 1):
+			if position_works(1, 0):
 				position = (position[0] + 1, position[1])
 		if event.keysym == 'Left':
-			if position_works(0, -1):
+			if position_works(-1, 0):
 				position = (position[0] - 1, position[1])
 
-def pos_loop(canvas, master, M_WIDTH, M_HEIGHT, G_WIDTH, G_HEIGHT, maze, even = True):
+		if x != position[0] or y != position[1]:
+			canvas.create_rectangle(G_WIDTH / M_WIDTH * x, G_HEIGHT / M_HEIGHT * y, 
+				G_WIDTH / M_WIDTH * (x + 1), G_HEIGHT / M_HEIGHT * (y + 1), fill = color_coding[maze[x][y]])
+			if maze[position[0]][position[1]] != "blank" and maze[position[0]][position[1]] != "cheese":
+				item = pick_item(maze[position[0]][position[1]])
+				maze[position[0]][position[1]] = "blank"
+				person.addToBackpack(item)
+				person.backpack.display()
+
+def pick_item(category):
+	global items
+	while True:
+		item = items[int(random() * len(items))]
+		if item.category == category:
+			return item
+
+def pos_loop(canvas, master, M_WIDTH, M_HEIGHT, G_WIDTH, G_HEIGHT, maze, n = 4):
 	x = position[0] ; y = position[1]
 	color = color_coding[maze[x][y]]
-	if even:
+	if n % 4 != 0:
 		canvas.create_rectangle(G_WIDTH / M_WIDTH * x, G_HEIGHT / M_HEIGHT * y, 
 				G_WIDTH / M_WIDTH * (x + 1), G_HEIGHT / M_HEIGHT * (y + 1), fill = "#3366FF")
 	else:
 		canvas.create_rectangle(G_WIDTH / M_WIDTH * x, G_HEIGHT / M_HEIGHT * y, 
 				G_WIDTH / M_WIDTH * (x + 1), G_HEIGHT / M_HEIGHT * (y + 1), fill = color)
-	master.after(500, pos_loop, canvas, master, M_WIDTH, M_HEIGHT, G_WIDTH, G_HEIGHT, maze, not even)
+	master.after(200, pos_loop, canvas, master, M_WIDTH, M_HEIGHT, G_WIDTH, G_HEIGHT, maze, (n + 1) % 4)
 
 def make_maze(w = 10, h = 10):
 	vis = [[0] * w + [1] for _ in range(h)] + [[1] * (w + 1)]
@@ -99,42 +117,42 @@ def display_item(r, c, WIDTH, HEIGHT, items, canvas):
 	img = PhotoImage(file=items[r * 3 + c].filename)
 	idd = canvas.create_image(WIDTH / 3 * r, HEIGHT / 3 * c, anchor=NW, image=img)
 
-def main():
-	global MAZE
-	M_WIDTH = 51 ; M_HEIGHT = 35	
-	G_WIDTH = M_WIDTH * 20 ; G_HEIGHT = M_HEIGHT * 20
-	T_WIDTH = G_WIDTH + 200 ; T_HEIGHT = G_HEIGHT
+M_WIDTH = 51 ; M_HEIGHT = 35	
+G_WIDTH = M_WIDTH * 20 ; G_HEIGHT = M_HEIGHT * 20
+T_WIDTH = G_WIDTH + 200 ; T_HEIGHT = G_HEIGHT
 
-	master = Tk()
-	master.bind_all('<Key>', key)
+master = Tk()
+master.bind_all('<Key>', key)
 
-	canvas = Canvas(master, width=T_WIDTH, height=T_HEIGHT)
-	canvas.pack()
+canvas = Canvas(master, width=T_WIDTH, height=T_HEIGHT)
+canvas.pack()
+CANVAS = canvas
 
-	maze=make_maze(int(M_HEIGHT*0.5), int(M_WIDTH*0.5-0.5))
-	MAZE = maze
-	items = Item.catalogue()
+maze = make_maze(int(M_HEIGHT*0.5), int(M_WIDTH*0.5-0.5))
+items = Item.catalogue()
 
-	for y in range(M_HEIGHT):
-		for x in range(M_WIDTH):
-			# display_item(r, c, WIDTH, HEIGHT, items, canvas)
-			# img = PhotoImage(file=items[r * 3 + c].filename)
-			# idd = canvas.create_image(WIDTH / 3 * r, HEIGHT / 3 * c, anchor=NW, image=img)
+person = Person()
+
+for y in range(M_HEIGHT):
+	for x in range(M_WIDTH):
+		# display_item(r, c, WIDTH, HEIGHT, items, canvas)
+		# img = PhotoImage(file=items[r * 3 + c].filename)
+		# idd = canvas.create_image(WIDTH / 3 * r, HEIGHT / 3 * c, anchor=NW, image=img)
 # <<<<<<< HEAD
-			item_color = color_coding["blank"]
-			if maze[x][y] == "wall": #wall
-				item_color = color_coding["wall"]
-			elif random() < 0.1:
-				item_index = int(random() * len(items))
-				item = items[item_index]
-				item_color = color_coding[item.category]
-				maze[x][y] = item.category
-			canvas.create_rectangle(G_WIDTH / M_WIDTH * x, G_HEIGHT / M_HEIGHT * y, 
-				G_WIDTH / M_WIDTH * (x + 1), G_HEIGHT / M_HEIGHT * (y + 1), fill = item_color)
+		item_color = color_coding["blank"]
+		if maze[x][y] == "wall": #wall
+			item_color = color_coding["wall"]
+		elif random() < 0.1:
+			item_index = int(random() * len(items))
+			item = items[item_index]
+			item_color = color_coding[item.category]
+			maze[x][y] = item.category
+		canvas.create_rectangle(G_WIDTH / M_WIDTH * x, G_HEIGHT / M_HEIGHT * y, 
+			G_WIDTH / M_WIDTH * (x + 1), G_HEIGHT / M_HEIGHT * (y + 1), fill = item_color)
 
 
-			# canvas.pack()
-	pos_loop(canvas, master, M_WIDTH, M_HEIGHT, G_WIDTH, G_HEIGHT, maze)
-	master.mainloop()
+		# canvas.pack()
+pos_loop(canvas, master, M_WIDTH, M_HEIGHT, G_WIDTH, G_HEIGHT, maze)
+master.mainloop()
 
-if __name__ == '__main__': main()
+# if __name__ == '__main__': main()

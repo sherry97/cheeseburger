@@ -2,9 +2,6 @@ from backpack import Backpack
 from cheeseburger import Cheeseburger
 
 class Person():
-	hunger = 50
-	happy = 5
-	backpack = Backpack();
 
 #	def __init__(self):
 #		self.hunger = 50
