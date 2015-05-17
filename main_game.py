@@ -53,7 +53,8 @@ def display_item(r, c, WIDTH, HEIGHT, items, canvas):
 
 def main():
 	M_WIDTH = 51 ; M_HEIGHT = 35	
-	WIDTH = M_WIDTH * 20 ; HEIGHT = M_HEIGHT * 20
+	G_WIDTH = M_WIDTH * 20 ; G_HEIGHT = M_HEIGHT * 20
+	T_WIDTH = G_WIDTH + 200 ; T_HEIGHT = G_HEIGHT
 
 	master = Tk()
 
@@ -70,24 +71,16 @@ def main():
 			# img = PhotoImage(file=items[r * 3 + c].filename)
 			# idd = canvas.create_image(WIDTH / 3 * r, HEIGHT / 3 * c, anchor=NW, image=img)
 # <<<<<<< HEAD
-# 			item_color = color_coding["blank"]
-# 			if maz[x][y] == 1: #wall
-# 				item_color = color_coding["wall"]
-# 			elif random() < 0.1:
-# 				item_index = int(random() * len(items))
-# 				item = items[item_index]
-# 				item_color = color_coding[item.category]
-# 				maz[x][y] = item_index + 2
-# 			canvas.create_rectangle(G_WIDTH / M_WIDTH * x, G_HEIGHT / M_HEIGHT * y, 
-# 				G_WIDTH / M_WIDTH * (x + 1), G_HEIGHT / M_HEIGHT * (y + 1), fill = item_color)
-# =======
-			#item = items[int(random() * len(items))]
-
-			#item = items[int(random() * len(items))]
-			item_color = ("#000000" if maze[x][y]==0 else "#FFFFFF")
-			#item_color = color_coding[item.category]
-			canvas.create_rectangle(WIDTH / M_WIDTH * x, HEIGHT / M_HEIGHT * y, 
-				WIDTH / M_WIDTH * (x + 1), HEIGHT / M_HEIGHT * (y + 1), fill = item_color)
+			item_color = color_coding["blank"]
+			if maze[x][y] == 1: #wall
+				item_color = color_coding["wall"]
+			elif random() < 0.1:
+				item_index = int(random() * len(items))
+				item = items[item_index]
+				item_color = color_coding[item.category]
+				maze[x][y] = item_index + 2
+			canvas.create_rectangle(G_WIDTH / M_WIDTH * x, G_HEIGHT / M_HEIGHT * y, 
+				G_WIDTH / M_WIDTH * (x + 1), G_HEIGHT / M_HEIGHT * (y + 1), fill = item_color)
 
 
 			# canvas.pack()
