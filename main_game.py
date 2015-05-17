@@ -5,7 +5,9 @@ from random import random, shuffle, randrange
 from item import Item
 from time import time
 from person import Person
+from subprocess import call
 import text
+import threading
 
 color_coding = {"meat": "#993300", "topping": "#99FF66", "condiment": "#FFCC00",
 	"bun": "#996600", "cheese": "#FFFF66", "blank": "#000000", "wall": "#FFFFFF"}
@@ -137,6 +139,7 @@ def display_item(r, c, WIDTH, HEIGHT, items, canvas):
 	img = PhotoImage(file=items[r * 3 + c].filename)
 	idd = canvas.create_image(WIDTH / 3 * r, HEIGHT / 3 * c, anchor=NW, image=img)
 
+
 #######################################################################
 
 M_WIDTH = 51 ; M_HEIGHT = 35	
@@ -146,6 +149,11 @@ START_TIME = time()
 
 root = Tk()
 root.bind_all('<Key>', key)
+
+# import pyglet
+# song = pyglet.media.load('hanging_tree.mp3')
+# song.play()
+# pyglet.app.run()
 
 canvas = Canvas(root, width=T_WIDTH, height=T_HEIGHT)
 canvas.pack()

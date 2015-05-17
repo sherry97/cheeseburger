@@ -1,6 +1,8 @@
 import text
 from person import Person
 from cheeseburger import Cheeseburger
+import threading
+from subprocess import call
 
 def makeCheeseburger(chara):
 	contents = chara.backpackContents()
@@ -35,6 +37,8 @@ def displayCheeseburgerStat(c):
 	print("deliciousness: "+str(c.delish))
 
 def main():
+	t = threading.Thread(target = call, args = (["aplay", "hanging_tree.wav"],))
+	t.start()
 	print("Press [enter] to continue.")
 	print("-"*50)
 	text.intro()
