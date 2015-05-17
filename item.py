@@ -16,17 +16,6 @@ class Item():
 		self.filename = filename
 		# filename is the name of a jpg file
 
-	def calories(self):
-		return self.calories
-	def name(self):
-		return self.name
-	def delish(self):
-		return self.delish
-	def category(self):
-		return self.category
-	def filename(self):
-		return self.filename
-
 	def __str__(self):
 		return "<{}: {}; {} cal>".format(self.category, self.name, self.calories)
 
