@@ -36,8 +36,6 @@ def key(event):
 	if event.char == event.keysym:
 		if event.keysym == 'q':
 			exit()
-	elif len(event.char) == 1:
-		pass
 	else:
 		# f1 to f12, shift keys, caps lock, Home, End, Delete ...
 		x = position[0]
@@ -77,7 +75,7 @@ def pick_item(category):
 		if item.category == category:
 			return item
 
-def pos_loop(canvas, master, M_WIDTH, M_HEIGHT, G_WIDTH, G_HEIGHT, maze, n = 4):
+def pos_loop(canvas, root, M_WIDTH, M_HEIGHT, G_WIDTH, G_HEIGHT, maze, n = 4):
 	x = position[0] ; y = position[1]
 	color = color_coding[maze[x][y]]
 	if n % 4 != 0:
@@ -86,7 +84,7 @@ def pos_loop(canvas, master, M_WIDTH, M_HEIGHT, G_WIDTH, G_HEIGHT, maze, n = 4):
 	else:
 		canvas.create_rectangle(G_WIDTH / M_WIDTH * x, G_HEIGHT / M_HEIGHT * y, 
 				G_WIDTH / M_WIDTH * (x + 1), G_HEIGHT / M_HEIGHT * (y + 1), fill = color)
-	master.after(200, pos_loop, canvas, master, M_WIDTH, M_HEIGHT, G_WIDTH, G_HEIGHT, maze, (n + 1) % 4)
+	root.after(200, pos_loop, canvas, root, M_WIDTH, M_HEIGHT, G_WIDTH, G_HEIGHT, maze, (n + 1) % 4)
 
 def make_maze(w = 10, h = 10):
 	vis = [[0] * w + [1] for _ in range(h)] + [[1] * (w + 1)]
@@ -128,10 +126,10 @@ G_WIDTH = M_WIDTH * 20 ; G_HEIGHT = M_HEIGHT * 20
 T_WIDTH = G_WIDTH + 200 ; T_HEIGHT = G_HEIGHT
 
 
-master = Tk()
-master.bind_all('<Key>', key)
+root = Tk()
+root.bind_all('<Key>', key)
 
-canvas = Canvas(master, width=T_WIDTH, height=T_HEIGHT)
+canvas = Canvas(root, width=T_WIDTH, height=T_HEIGHT)
 canvas.pack()
 CANVAS = canvas
 
@@ -153,8 +151,8 @@ for y in range(M_HEIGHT):
 		canvas.create_rectangle(G_WIDTH / M_WIDTH * x, G_HEIGHT / M_HEIGHT * y, 
 			G_WIDTH / M_WIDTH * (x + 1), G_HEIGHT / M_HEIGHT * (y + 1), fill = item_color)
 
-pos_loop(canvas, master, M_WIDTH, M_HEIGHT, G_WIDTH, G_HEIGHT, maze)
-master.mainloop()
+pos_loop(canvas, root, M_WIDTH, M_HEIGHT, G_WIDTH, G_HEIGHT, maze)
+root.mainloop()
 
 string='Stuff in Backpack'
 for stuff in person.backpack:

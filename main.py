@@ -1,9 +1,8 @@
 import text
-import main_game
 
 def main():
-	text.intro()
-	main_game.main()
+#	text.intro()
+	import main_game
 	text.outro(0)
 
 if __name__ == '__main__': main()
