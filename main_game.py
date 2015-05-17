@@ -45,6 +45,13 @@ def key(event):
 		x = position[0]
 		y = position[1]
 		# print( 'Special Key %r' % event.keysym )
+		if event.keysym == 's':
+			active_item_index = (active_item_index + 1) % len(person.backpack.backpack)
+		if event.keysym == 'w':
+			active_item_index = (active_item_index + len(person.backpack.backpack) - 1) % len(person.backpack.backpack)
+		if event.keysym == 'e':
+			item = person.backpack.backpack.pop(active_item_index)
+			person.eat(item)
 		if event.keysym == 'Up':
 			if position_works(0, -1):
 				position = (position[0], position[1] - 1)
