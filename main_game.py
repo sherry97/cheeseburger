@@ -107,7 +107,7 @@ def pos_loop(canvas, root, M_WIDTH, M_HEIGHT, G_WIDTH, G_HEIGHT, maze, n = 4):
 	global stopped, cause
 	if stopped:
 		canvas.create_rectangle(0, 0, G_WIDTH, G_HEIGHT, fill = 'black')
-		canvas.create_text(G_WIDTH / 2, G_HEIGHT / 2, text = u"\u2193Look at the console\u2193", font = ("Purisa", 72), fill = '#5858FA')
+		canvas.create_text(G_WIDTH / 2, G_HEIGHT / 2, text = u"\u2193Look at the console\u2193", font = ("Purisa", 48), fill = '#5858FA')
 		canvas.quit()
 		return
 	x = position[0] ; y = position[1]
@@ -171,7 +171,7 @@ def display_item(r, c, WIDTH, HEIGHT, items, canvas):
 
 #######################################################################
 
-M_WIDTH = 41 ; M_HEIGHT = 25	
+M_WIDTH = 31 ; M_HEIGHT = 30	
 G_WIDTH = M_WIDTH * 20 ; G_HEIGHT = M_HEIGHT * 20
 T_WIDTH = G_WIDTH + 200 ; T_HEIGHT = G_HEIGHT
 START_TIME = time()
