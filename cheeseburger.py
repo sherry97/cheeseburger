@@ -1,34 +1,38 @@
-class Cheeseburger():
-	calories = 0
-	delish = 0
-	size = 0
-	content = []
+from item import Item
 
-	def __init__():
+class Cheeseburger():
+
+	def __init__(self):
+		self.calories = 0
+		self.delish = 0
+		self.size = 0
+		self.content = []
+
+	def __init__(self, calories=0, delish=0, size=0, content=[]):
 		self.calories = calories
 		self.delish = delish
 		self.size = size
 		self.content = content
 
-	def calories():
-		return calories
+	def calories(self):
+		return self.calories
 
-	def delish():
-		return delish
+	def delish(self):
+		return self.delish
 
-	def add(o):
-		content[-1] = o
-		calories += o.calories()
-		rawdelish = delish*size+o.delish()
-		size += 1
-		delish = rawdelish/size
+	def add(self, o):
+		self.content.append(o)
+		self.calories += o.calories
+		rawdelish = self.delish*self.size+o.delish
+		self.size += 1
+		self.delish = rawdelish/self.size
 
-	def remove(o):
-		content.remove(o);
-		calories -= o.calories()
-		rawdelish = delish*size-o.delish()
-		size -= 1
-		delish = rawdelish/size
+	def remove(self, o):
+		self.content.remove(o);
+		self.calories -= o.calories
+		rawdelish = self.delish*self.size-o.delish
+		self.size -= 1
+		self.delish = rawdelish/self.size
 
-	def display():
-		print(content)
+	def display(self):
+		print(self.content)
