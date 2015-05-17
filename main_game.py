@@ -69,10 +69,11 @@ def key(event):
 			person.move()
 			canvas.create_rectangle(G_WIDTH / M_WIDTH * x, G_HEIGHT / M_HEIGHT * y, 
 				G_WIDTH / M_WIDTH * (x + 1), G_HEIGHT / M_HEIGHT * (y + 1), fill = color_coding[maze[x][y]])
-			if maze[position[0]][position[1]] != "blank" and maze[position[0]][position[1]] != "cheese":
+			if maze[position[0]][position[1]] != "blank" and maze[position[0]][position[1]] != "wall":
 				item = pick_item(maze[position[0]][position[1]])
 				maze[position[0]][position[1]] = "blank"
 				person.addToBackpack(item)
+				print ("--->You picked up "+item.name+".\n\t"+descriptions[item.name])
 				# person.backpack.display()
 
 def pick_item(category):
@@ -81,6 +82,26 @@ def pick_item(category):
 		item = items[int(random() * len(items))]
 		if item.category == category:
 			return item
+
+def runtime(time):
+	am = True
+	clock = ""
+	if time//8 > 5:
+		am = False
+		clock += str((time//8) - 5)
+	else:
+		am = True
+		clock += str((time//8) +7)
+	clock += ":"
+	if(round((time%8)*(15//2),2)) < 10:
+		clock += "0"
+	clock += str(round((time % 8)*(15//2), 2))
+	if am:
+		clock += " am"
+	else:
+		clock += " pm"
+	return clock
+
 
 def pos_loop(canvas, root, M_WIDTH, M_HEIGHT, G_WIDTH, G_HEIGHT, maze, n = 4):
 	global stopped, cause
@@ -98,8 +119,8 @@ def pos_loop(canvas, root, M_WIDTH, M_HEIGHT, G_WIDTH, G_HEIGHT, maze, n = 4):
 		canvas.create_rectangle(G_WIDTH / M_WIDTH * x, G_HEIGHT / M_HEIGHT * y, 
 				G_WIDTH / M_WIDTH * (x + 1), G_HEIGHT / M_HEIGHT * (y + 1), fill = color)
 
-	canvas.itemconfig(id2, text = "  position: ("+str(x) + ", " + str(y) + ")\n  hunger: {}/100 \n  happy: {}/10\n  runtime: {} seconds\n  [q] or [esc] to exit \n  backpack controls:\n     [s] to move down\n     [w] to move up\n     [e] to eat selected food".format(person.hunger, round(person.happy, 3), int(time() - START_TIME)))
-	if round(time()-START_TIME)>90:
+	canvas.itemconfig(id2, text = "  position: ("+str(x) + ", " + str(y) + ")\n  hunger: {}/100 \n  happy: {}/10\n  ".format(person.hunger, round(person.happy, 3))+runtime(int(time()-START_TIME))+"\n  [q] or [esc] to exit \n  backpack controls:\n     [s] to move down\n     [w] to move up\n     [e] to eat selected food")
+	if round(time()-START_TIME)>96:
 		stopped = True
 		cause = "time"
 	if person.hunger <= 0:
@@ -169,6 +190,7 @@ CANVAS = canvas
 
 maze = make_maze(int(M_HEIGHT*0.5), int(M_WIDTH*0.5-0.5))
 items = Item.catalogue()
+descriptions = Item.describe()
 
 active_item_index = 0
 

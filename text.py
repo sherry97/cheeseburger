@@ -18,19 +18,18 @@ def lookAround():
 	input('\n You look up at the sky, but no bird silhouette interrupts the unending gray. You haven’t seen one in a while now.')
 	
 def focus():
-	input('\nThe snow crunches under your boots as you step towards the street. You have to go much further than usual today.')
-	input('\nIn a few minutes you pass the convenience store with the truck lodged in its front entrance. There is a path cleared of snow and glass that you made at the beginning.')
-	print('\nWithout its tasteless food you would have starved to death a long time ago. But there are other places. Better places, with better food. That’s where you are going today, for better food. For a cheeseburger.')
+	input('\nThe snow crunches under your boots. In a few minutes you pass the convenience store. There is a path cleared of snow and glass that you made just after it happened.')
+	input('\nYou hate and love its tasteless food. But there are better places, further away. That’s where you are going today, for better food. For a cheeseburger.')
 	print('\n(a) Walk to the supermarket.')
 	input('enter letter: ')
 	walkToMarket()
 
 def walkToMarket():
-	input('\nThe overcast skies are slumbering today, like everything else. You pass by obliterated houses, some smashed, as if by a giant fist, some dissolved into rubble.')
+	input('\nThe overcast skies are slumbering today, like everything else. You pass by obliterated houses.')
 	input('\nAt last you reach the supermarket. The walls are more holes than plaster. You hope they don’t choose today to fall. You step inside.')
 
 def intro():
-	input("You add a log to the fire. Your poker glows red-orange as the fire begins to consume the new log. You place the poker into its holder next to the fireplace, a few feet away from the blanket-covered walls.")
+	input("Your poker glows red-orange as the fire begins to consume the new log. You place the poker into its holder next to the fireplace, a few feet away from the blanket-covered walls. ")
 	input('\nThe room is tiny. Next to the fireplace is a small beige door. Across from the fireplace is the door to the outside, blocked by a long white couch, spanning almost the entire wall.')
 	input("\nSqueezed between the left end of the couch and the wall is a wooden table with your clothes for outside and a framed picture laying down.")
 	table = False
