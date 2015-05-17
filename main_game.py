@@ -5,6 +5,7 @@ from random import random, shuffle, randrange
 from item import Item
 from time import time
 from person import Person
+import text
 
 color_coding = {"meat": "#993300", "topping": "#99FF66", "condiment": "#FFCC00",
 	"bun": "#996600", "cheese": "#FFFF66", "blank": "#000000", "wall": "#FFFFFF"}
@@ -14,7 +15,6 @@ color_coding = {"meat": "#993300", "topping": "#99FF66", "condiment": "#FFCC00",
 # 	canvas = Canvas(root, width  = WIDTH, height = HEIGHT) #, bg = 'black')
 # 	canvas.pack() #expand = YES, fill = BOTH)
 # 	return canvas
-
 position = (1, 1)
 # MAZE = None ; CANVAS = None
 
@@ -29,13 +29,15 @@ def position_works(dx, dy):
 	return True
 
 def key(event):
-	global position, canvas, maze, person
+	global position, canvas, maze, person, stopped
 	"""shows key or tk code for the key"""
-	if event.keysym == 'Escape':
-		root.destroy()
-	if event.char == event.keysym:
-		if event.keysym == 'q':
-			exit()
+	if event.keysym == 'Escape' or event.keysym == "q":
+		stopped = True
+		root.quit()
+	# if event.char == event.keysym:
+	# 	if event.keysym == 'q':
+	# 		stopped = True
+	# 		exit()
 	else:
 		# f1 to f12, shift keys, caps lock, Home, End, Delete ...
 		x = position[0]
@@ -55,6 +57,7 @@ def key(event):
 				position = (position[0] - 1, position[1])
 
 		if x != position[0] or y != position[1]:
+			person.move()
 			canvas.create_rectangle(G_WIDTH / M_WIDTH * x, G_HEIGHT / M_HEIGHT * y, 
 				G_WIDTH / M_WIDTH * (x + 1), G_HEIGHT / M_HEIGHT * (y + 1), fill = color_coding[maze[x][y]])
 			if maze[position[0]][position[1]] != "blank" and maze[position[0]][position[1]] != "cheese":
@@ -62,11 +65,6 @@ def key(event):
 				maze[position[0]][position[1]] = "blank"
 				person.addToBackpack(item)
 				# person.backpack.display()
-				string = 'Stuff in Backpack'
-				for item in person.backpack.backpack:
-					string += '\n\t' + item.name
-				canvas.create_rectangle(G_WIDTH, 0, T_WIDTH, T_HEIGHT, fill = "white")
-				canvas.create_text(G_WIDTH,20,anchor=NW,width=180,text=string)
 
 def pick_item(category):
 	global items
@@ -76,6 +74,11 @@ def pick_item(category):
 			return item
 
 def pos_loop(canvas, root, M_WIDTH, M_HEIGHT, G_WIDTH, G_HEIGHT, maze, n = 4):
+	global stopped
+	if stopped:
+		canvas.create_rectangle(0, 0, G_WIDTH, G_HEIGHT, fill = 'black')
+		canvas.create_text(G_WIDTH / 2, G_HEIGHT / 2, text = u"\u2193Look at the console\u2193", font = ("Purisa", 72), fill = '#5858FA')
+		return
 	x = position[0] ; y = position[1]
 	color = color_coding[maze[x][y]]
 	if n % 4 != 0:
@@ -84,6 +87,13 @@ def pos_loop(canvas, root, M_WIDTH, M_HEIGHT, G_WIDTH, G_HEIGHT, maze, n = 4):
 	else:
 		canvas.create_rectangle(G_WIDTH / M_WIDTH * x, G_HEIGHT / M_HEIGHT * y, 
 				G_WIDTH / M_WIDTH * (x + 1), G_HEIGHT / M_HEIGHT * (y + 1), fill = color)
+
+	canvas.itemconfig(id2, text = str(x) + " " + str(y) + "\n  hunger: {} \n  happy: {}\n  q or esc to exit \n  runtime: {}".format(person.hunger, person.happy, int(time() - START_TIME)))
+	string = '  Stuff in Backpack'
+	for k, item in enumerate(person.backpack.backpack):
+		string += '\n\t-->' + item.name if k == active_item_index else '\n\t' + item.name
+	canvas.itemconfig(id1, text=string)
+
 	root.after(200, pos_loop, canvas, root, M_WIDTH, M_HEIGHT, G_WIDTH, G_HEIGHT, maze, (n + 1) % 4)
 
 def make_maze(w = 10, h = 10):
@@ -121,10 +131,12 @@ def display_item(r, c, WIDTH, HEIGHT, items, canvas):
 	img = PhotoImage(file=items[r * 3 + c].filename)
 	idd = canvas.create_image(WIDTH / 3 * r, HEIGHT / 3 * c, anchor=NW, image=img)
 
+#######################################################################
+
 M_WIDTH = 51 ; M_HEIGHT = 35	
 G_WIDTH = M_WIDTH * 20 ; G_HEIGHT = M_HEIGHT * 20
 T_WIDTH = G_WIDTH + 200 ; T_HEIGHT = G_HEIGHT
-
+START_TIME = time()
 
 root = Tk()
 root.bind_all('<Key>', key)
@@ -136,7 +148,17 @@ CANVAS = canvas
 maze = make_maze(int(M_HEIGHT*0.5), int(M_WIDTH*0.5-0.5))
 items = Item.catalogue()
 
+active_item_index = 0
+
 person = Person()
+
+string = '  Stuff in Backpack'
+for item, n in enumerate(person.backpack.backpack):
+	string += '\n\t-->' + item.name if n == active_item_index else '\n\t' + item.name
+# canvas.create_rectangle(G_WIDTH, 0, T_WIDTH, T_HEIGHT, fill = "white")
+id1 = canvas.create_text(G_WIDTH,20,anchor=NW,width=180,text=string)
+status_text = "  hunger: {} \n  happy: {}\n  q or esc to exit \n  runtime: {}".format(person.hunger, person.happy, int(time() - START_TIME))
+id2 = canvas.create_text(G_WIDTH, G_HEIGHT * 3 / 5, anchor = NW, text = status_text, font = "Purisa")
 
 for y in range(M_HEIGHT):
 	for x in range(M_WIDTH):
@@ -151,11 +173,12 @@ for y in range(M_HEIGHT):
 		canvas.create_rectangle(G_WIDTH / M_WIDTH * x, G_HEIGHT / M_HEIGHT * y, 
 			G_WIDTH / M_WIDTH * (x + 1), G_HEIGHT / M_HEIGHT * (y + 1), fill = item_color)
 
-pos_loop(canvas, root, M_WIDTH, M_HEIGHT, G_WIDTH, G_HEIGHT, maze)
+stopped = False
+pos_loop(canvas, root, M_WIDTH, M_HEIGHT, G_WIDTH, G_HEIGHT, maze, stopped)
 root.mainloop()
 
-string='Stuff in Backpack'
-for stuff in person.backpack:
-	string+='\n\t'+stuff
-canvas.create_text(G_WIDTH+G_WIDTH/M_WIDTH*3,50,width=180,text=string)
+# string='Stuff in Backpack'
+# for stuff in person.backpack.backpack:
+# 	string+='\n\t'+stuff.name
+# canvas.create_text(G_WIDTH+G_WIDTH/M_WIDTH*3,50,width=180,text=string)
 # if __name__ == '__main__': main()

@@ -21,7 +21,7 @@ class Person():
 
 	def move(self):
 		self.hunger -= 5
-		self.happy -= .5
+		self.happy -= .01
 
 	def sethunger(self, val):
 		self.hunger = val
