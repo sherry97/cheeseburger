@@ -76,7 +76,7 @@ def intro():
 
 def outro(i):
 	if i == 0:
-		print('\nYou begin walking home. The sun has set. It is dark. The noises start getting louder. You drop everything and run, but you won’t make it. You see your shack on the horizon as the Horde catches up to you. You think of your sick little girl as the monsters descend upon you and the last dregs of starlight are ripped from the sky by bloody hands.')
+		print('\nBy the time you begin walking home, the sun has set. The distant noises start getting louder--closer. You drop everything and run, but you won’t make it. You see your shack on the horizon as the Horde catches up to you. You think of your sick little girl as the monsters descend upon you and the last dregs of starlight are ripped from the sky by bloody hands.')
 	elif i == 1:
 		print('\nYour legs start trembling, then your knees fall out from under you. You think that this wasn’t the way things were supposed to end as you fall to the ground. The food tumbles from your hands and your world goes dark. In the distance, you can hear the ungodly shuffling of the Horde assembling in the twilight.')
 	elif i == 2:
