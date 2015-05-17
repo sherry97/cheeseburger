@@ -31,7 +31,7 @@ def position_works(dx, dy):
 	return True
 
 def key(event):
-	global position, canvas, maze, person, stopped
+	global position, canvas, maze, person, stopped, active_item_index
 	"""shows key or tk code for the key"""
 	if event.keysym == 'Escape' or event.keysym == "q":
 		stopped = True
@@ -98,7 +98,7 @@ def pos_loop(canvas, root, M_WIDTH, M_HEIGHT, G_WIDTH, G_HEIGHT, maze, n = 4):
 		canvas.create_rectangle(G_WIDTH / M_WIDTH * x, G_HEIGHT / M_HEIGHT * y, 
 				G_WIDTH / M_WIDTH * (x + 1), G_HEIGHT / M_HEIGHT * (y + 1), fill = color)
 
-	canvas.itemconfig(id2, text = "  position: ("+str(x) + ", " + str(y) + ")\n  hunger: {}/100 \n  happy: {}/10\n  [q] or [esc] to exit \n  runtime: {} seconds".format(person.hunger, round(person.happy, 3), int(time() - START_TIME)))
+	canvas.itemconfig(id2, text = "  position: ("+str(x) + ", " + str(y) + ")\n  hunger: {}/100 \n  happy: {}/10\n  runtime: {} seconds\n  [q] or [esc] to exit \n  backpack controls:\n     [s] to move down\n     [w] to move up\n     [e] to eat selected food".format(person.hunger, round(person.happy, 3), int(time() - START_TIME)))
 	if round(time()-START_TIME)>90:
 		stopped = True
 		cause = "time"
