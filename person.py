@@ -20,7 +20,7 @@ class Person():
 		if self.happy > 10: self.happy = 10
 
 	def move(self):
-		self.hunger -= 5
+		self.hunger -= .5
 		self.happy -= .01
 
 	def sethunger(self, val):

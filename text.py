@@ -85,23 +85,23 @@ def intro():
 
 def outro(i):
 	if i == 0:
-		print('You begin walking home. The sun has set. It is dark. The noises start getting louder. You drop everything and run, but you won’t make it. You see your shack on the horizon as the Horde catches up to you. You think of your sick little girl as the monsters descend upon you and the last dregs of starlight are ripped from the sky by bloody hands.')
+		print('\nYou begin walking home. The sun has set. It is dark. The noises start getting louder. You drop everything and run, but you won’t make it. You see your shack on the horizon as the Horde catches up to you. You think of your sick little girl as the monsters descend upon you and the last dregs of starlight are ripped from the sky by bloody hands.')
 	elif i == 1:
-		print('Your legs start trembling, then your knees fall out from under you. You think that this wasn’t the way things were supposed to end as you fall to the ground. The food tumbles from your hands and your world goes dark. In the distance, you can hear the ungodly shuffling of the Horde assembling in the twilight.')
+		print('\nYour legs start trembling, then your knees fall out from under you. You think that this wasn’t the way things were supposed to end as you fall to the ground. The food tumbles from your hands and your world goes dark. In the distance, you can hear the ungodly shuffling of the Horde assembling in the twilight.')
 	elif i == 2:
-		print('You enter your small shack as the sun is setting, shutting the door as quickly as possible. You breath out a relieved sigh and take off your snow-covered jacket. You stoke the fire, add another log, and position your makeshift oven over it. You pull out the food and cook it over the fire. Half an hour later, a delicious smell wafts through the room, and you move the burger onto a plate.')
-		print('You take the burger to the small door. You open it and enter the bedroom. A young girl lays on the bed, sweating. She wakes up slowly, mumbling something.')
-		print('“I’m here, lady bug. Look what I brought you.”')
-		print('Her voice is hoarse and unintelligible.')
-		print('“Rest your voice.” You place the burger on her nightstand. You stroke her hair and coax her into a sitting position. “Happy birthday sweetie. I brought your favorite. Remember how much you used to love these?” She manages to take a bite.')
-		print('Her face lights up as she closes her eyes and chews slowly. She finishes the burger and you’re glad she’s eating again.')
+		input('\nYou enter your small shack as the sun is setting, shutting the door as quickly as possible. You breath out a relieved sigh and take off your snow-covered jacket. You stoke the fire, add another log, and position your makeshift oven over it. You pull out the food and cook it over the fire. Half an hour later, a delicious smell wafts through the room, and you move the burger onto a plate.')
+		input('\nYou take the burger to the small door. You open it and enter the bedroom. A young girl lays on the bed, sweating. She wakes up slowly, mumbling something.')
+		input('\n“I’m here, lady bug. Look what I brought you.”')
+		input('\nHer voice is hoarse and unintelligible.')
+		input('\n“Rest your voice.” You place the burger on her nightstand. You stroke her hair and coax her into a sitting position. “Happy birthday sweetie. I brought your favorite. Remember how much you used to love these?” She manages to take a bite.')
+		print('\nHer face lights up as she closes her eyes and chews slowly. She finishes the burger and you’re glad she’s eating again.')
 	elif i == 3:
-		print('You enter your small shack as the sun is setting, shutting the door as quickly as possible. You breath out a relieved sigh and take off your snow-covered jacket. You stoke the fire, add another log, and position your makeshift oven over it. You pull out the food and cook it over the fire. Half an hour later, a delicious smell wafts through the room, and you move the burger onto a plate.')
-		print('You take the burger to the small door. You open it and enter the bedroom. A young girl lays on the bed, sweating. She wakes up slowly, mumbling something.')
-		print('“I’m here, lady bug. Look what I brought you.”')
-		print('Her voice is hoarse and unintelligible.')
-		print('“Rest your voice.” You place the burger on her nightstand. You stroke her hair and coax her into a sitting position. “Happy birthday sweetie. I brought your favorite. Remember how much you used to love these?” She manages to take a bite.')
-		print('She tries to hide a grimace, smiling at you. “Thanks,” she barely forces out. You wish you had remembered what she liked a little better.')
+		input('\nYou enter your small shack as the sun is setting, shutting the door as quickly as possible. You breath out a relieved sigh and take off your snow-covered jacket. You stoke the fire, add another log, and position your makeshift oven over it. You pull out the food and cook it over the fire. Half an hour later, a delicious smell wafts through the room, and you move the burger onto a plate.')
+		input('\nYou take the burger to the small door. You open it and enter the bedroom. A young girl lays on the bed, sweating. She wakes up slowly, mumbling something.')
+		input('\n“I’m here, lady bug. Look what I brought you.”')
+		input('\nHer voice is hoarse and unintelligible.')
+		input('\n“Rest your voice.” You place the burger on her nightstand. You stroke her hair and coax her into a sitting position. “Happy birthday sweetie. I brought your favorite. Remember how much you used to love these?” She manages to take a bite.')
+		print('\nShe tries to hide a grimace, smiling at you. “Thanks,” she barely forces out. You wish you had remembered what she liked a little better.')
 
 
 
