@@ -37,7 +37,7 @@ def displayCheeseburgerStat(c):
 	print("deliciousness: "+str(c.delish))
 
 def main():
-#	t = threading.Thread(target = call, args = (["aplay", "hanging_tree.wav"],))
+#	t = threading.Thread(target = call, args = (["afplay", "hanging_tree.wav"],))
 #	t.start()
 	print("Press [enter] to continue.")
 	print("-"*50)
