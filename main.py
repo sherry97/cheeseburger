@@ -47,6 +47,7 @@ def main():
 	print(" you go, but keep an eye on your health status.")
 	print("-"*50)
 	import main_game
+	print("-"*50)
 	person = main_game.person
 	cause = main_game.cause
 	if cause == "time":
