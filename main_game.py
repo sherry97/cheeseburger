@@ -101,9 +101,9 @@ def display_item(r, c, WIDTH, HEIGHT, items, canvas):
 
 def main():
 	global MAZE
-	M_WIDTH = 51 ; M_HEIGHT = 35	
+	M_WIDTH = 41 ; M_HEIGHT = 27	
 	G_WIDTH = M_WIDTH * 20 ; G_HEIGHT = M_HEIGHT * 20
-	T_WIDTH = G_WIDTH + 200 ; T_HEIGHT = G_HEIGHT
+	T_WIDTH = G_WIDTH + 200 ; T_HEIGHT = G_HEIGHT+100
 
 	master = Tk()
 	master.bind_all('<Key>', key)
@@ -114,6 +114,8 @@ def main():
 	maze=make_maze(int(M_HEIGHT*0.5), int(M_WIDTH*0.5-0.5))
 	MAZE = maze
 	items = Item.catalogue()
+
+	backback=['cheese','chicken','bun','lettuce']#add gathered items into here
 
 	for y in range(M_HEIGHT):
 		for x in range(M_WIDTH):
@@ -134,6 +136,11 @@ def main():
 
 
 			# canvas.pack()
+	string='Stuff in Backpack'
+	for stuff in backback:
+		string+='\n\t'+stuff
+	canvas.create_text(G_WIDTH+G_WIDTH/M_WIDTH*3,50,width=180,text=string)
+
 	pos_loop(canvas, master, M_WIDTH, M_HEIGHT, G_WIDTH, G_HEIGHT, maze)
 	master.mainloop()
 
