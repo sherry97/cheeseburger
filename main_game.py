@@ -73,7 +73,7 @@ def key(event):
 				item = pick_item(maze[position[0]][position[1]])
 				maze[position[0]][position[1]] = "blank"
 				person.addToBackpack(item)
-				print ("--->You picked up "+item.name+".\n\t"+descriptions[item.name])
+				print ("--->You pick up "+item.name+".\n\t"+descriptions[item.name])
 				# person.backpack.display()
 
 def pick_item(category):
@@ -171,7 +171,7 @@ def display_item(r, c, WIDTH, HEIGHT, items, canvas):
 
 #######################################################################
 
-M_WIDTH = 51 ; M_HEIGHT = 35	
+M_WIDTH = 41 ; M_HEIGHT = 25	
 G_WIDTH = M_WIDTH * 20 ; G_HEIGHT = M_HEIGHT * 20
 T_WIDTH = G_WIDTH + 200 ; T_HEIGHT = G_HEIGHT
 START_TIME = time()

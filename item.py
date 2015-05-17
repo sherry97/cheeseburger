@@ -23,25 +23,25 @@ class Item():
 		items = []
 		# name, category, calories, delishness, filename
 		items.append(Item("tomato", topping, 6, 5))
-		items.append(Item("lettuce", topping, 2, 5))
-		items.append(Item("mushrooms", topping, 7, 5))
-		items.append(Item("jalapenos", topping, 4, 10))
+		items.append(Item("lettuce", topping, 2, 2))
+		items.append(Item("mushrooms", topping, 7, 3))
+		items.append(Item("jalapenos", topping, 4, 1))
 
 		items.append(Item("ketchup", condiment, 9, 7))
-		items.append(Item("mustard", condiment, 8, 5))
+		items.append(Item("mustard", condiment, 8, 3))
 		items.append(Item("mayo", condiment, 20, 5))
-		items.append(Item("BBQ sauce", condiment, 11, 5))
-		items.append(Item("horse radish", condiment, 10, 5))
+		items.append(Item("BBQ sauce", condiment, 11, 3))
+		items.append(Item("horse radish", condiment, 10, 1))
 
-		items.append(Item("beef", meat, 400, 5))
+		items.append(Item("beef", meat, 400, 7))
 		items.append(Item("tofu", meat, 250, 4))
 		items.append(Item("fish", meat, 250, 5))
-		items.append(Item("chicken", meat, 300, 5))
+		items.append(Item("chicken", meat, 300, 3))
 		items.append(Item("veg", meat, 200, 4))
 
 		items.append(Item("white bread", bun, 150, 5))
-		items.append(Item("rye bread", bun, 152, 10))
-		items.append(Item("wheat bread", bun, 152, 10))
+		items.append(Item("rye bread", bun, 160, 3))
+		items.append(Item("wheat bread", bun, 180, 10))
 		return items
 
 	def describe():
@@ -52,7 +52,7 @@ class Item():
 		descriptions['jalapenos'] = 'You like jalapenos. They warm you up.'
 
 		descriptions['ketchup'] = 'Ah, the red ambrosia. What was a burger without ketchup? To be fair, your coworker Anna didn’t put ketchup on her burgers, or even her fries. But she had only liked plain foo. Like cheese-with-rice plain food. Well she was probably gone now. Like everyone else.'
-		descriptions['mustard'] = 'Ketchup’s Luigi. On hot dogs or burgers, mustard is good. Just not as good.'
+		descriptions['mustard'] = 'Ketchup’s Luigi. On hot dogs or burgers, mustard is good. Just not as good as ketchup.'
 		descriptions['mayo'] = 'You find a jar of Mayonnaise. Did people even put this on burgers? You can’t remember. It gets a little harder each time to remember how things were before.'
 		descriptions['BBQ sauce'] = '‘Hot dogs, ribs, pizza, tonkatsu…’ The list goes on and on. BBQ sauce can definitely go on burgers too.'
 		descriptions['horse radish'] = 'Horseradish. Mmmm. You can feel your sinuses buzzing already. How did they not smell this out? Maybe they don’t eat it...'
