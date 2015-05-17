@@ -45,6 +45,7 @@ def main():
 	print("-"*50)
 	print("  Use arrow keys to navigate. Collect food as")
 	print(" you go, but keep an eye on your health status.")
+	print("-"*50)
 	import main_game
 	person = main_game.person
 	cause = main_game.cause
