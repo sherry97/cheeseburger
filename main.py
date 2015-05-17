@@ -37,8 +37,8 @@ def displayCheeseburgerStat(c):
 	print("deliciousness: "+str(c.delish))
 
 def main():
-	t = threading.Thread(target = call, args = (["aplay", "hanging_tree.wav"],))
-	t.start()
+#	t = threading.Thread(target = call, args = (["aplay", "hanging_tree.wav"],))
+#	t.start()
 	print("Press [enter] to continue.")
 	print("-"*50)
 	text.intro()
@@ -52,7 +52,6 @@ def main():
 		text.outro(0)
 		return
 	elif cause == "hunger":
-		print("exit for hunger")
 		text.outro(1)
 		return
 	print("-"*50)

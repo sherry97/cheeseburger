@@ -80,6 +80,7 @@ def pos_loop(canvas, root, M_WIDTH, M_HEIGHT, G_WIDTH, G_HEIGHT, maze, n = 4):
 	if stopped:
 		canvas.create_rectangle(0, 0, G_WIDTH, G_HEIGHT, fill = 'black')
 		canvas.create_text(G_WIDTH / 2, G_HEIGHT / 2, text = u"\u2193Look at the console\u2193", font = ("Purisa", 72), fill = '#5858FA')
+		canvas.quit()
 		return
 	x = position[0] ; y = position[1]
 	color = color_coding[maze[x][y]]
