@@ -34,7 +34,8 @@ def key(event):
 	if event.keysym == 'Escape':
 		root.destroy()
 	if event.char == event.keysym:
-		pass
+		if event.keysym == 'q':
+			exit()
 	elif len(event.char) == 1:
 		pass
 	else:
@@ -62,7 +63,12 @@ def key(event):
 				item = pick_item(maze[position[0]][position[1]])
 				maze[position[0]][position[1]] = "blank"
 				person.addToBackpack(item)
-				person.backpack.display()
+				# person.backpack.display()
+				string = 'Stuff in Backpack'
+				for item in person.backpack.backpack:
+					string += '\n\t' + item.name
+				canvas.create_rectangle(G_WIDTH, 0, T_WIDTH, T_HEIGHT, fill = "white")
+				canvas.create_text(G_WIDTH,20,anchor=NW,width=180,text=string)
 
 def pick_item(category):
 	global items
@@ -121,6 +127,7 @@ M_WIDTH = 51 ; M_HEIGHT = 35
 G_WIDTH = M_WIDTH * 20 ; G_HEIGHT = M_HEIGHT * 20
 T_WIDTH = G_WIDTH + 200 ; T_HEIGHT = G_HEIGHT
 
+
 master = Tk()
 master.bind_all('<Key>', key)
 
@@ -135,10 +142,6 @@ person = Person()
 
 for y in range(M_HEIGHT):
 	for x in range(M_WIDTH):
-		# display_item(r, c, WIDTH, HEIGHT, items, canvas)
-		# img = PhotoImage(file=items[r * 3 + c].filename)
-		# idd = canvas.create_image(WIDTH / 3 * r, HEIGHT / 3 * c, anchor=NW, image=img)
-# <<<<<<< HEAD
 		item_color = color_coding["blank"]
 		if maze[x][y] == "wall": #wall
 			item_color = color_coding["wall"]
@@ -150,9 +153,11 @@ for y in range(M_HEIGHT):
 		canvas.create_rectangle(G_WIDTH / M_WIDTH * x, G_HEIGHT / M_HEIGHT * y, 
 			G_WIDTH / M_WIDTH * (x + 1), G_HEIGHT / M_HEIGHT * (y + 1), fill = item_color)
 
-
-		# canvas.pack()
 pos_loop(canvas, master, M_WIDTH, M_HEIGHT, G_WIDTH, G_HEIGHT, maze)
 master.mainloop()
 
+string='Stuff in Backpack'
+for stuff in person.backpack:
+	string+='\n\t'+stuff
+canvas.create_text(G_WIDTH+G_WIDTH/M_WIDTH*3,50,width=180,text=string)
 # if __name__ == '__main__': main()

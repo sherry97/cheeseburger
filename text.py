@@ -58,7 +58,7 @@ def main():
 		else:
 			print("\nInvalid option.")
 	while not couch:
-		print("\n(a)Move the couch. \n(b) Look at the picture. \n(c) Look at the fireplace.")
+		print("\n(a) Move the couch. \n(b) Look at the picture. \n(c) Look at the fireplace.")
 		opt = input('enter letter: ')
 		if opt == 'a':
 			goCouch()
