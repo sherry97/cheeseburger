@@ -74,7 +74,7 @@ def pick_item(category):
 			return item
 
 def pos_loop(canvas, root, M_WIDTH, M_HEIGHT, G_WIDTH, G_HEIGHT, maze, n = 4):
-	global stopped
+	global stopped, cause
 	if stopped:
 		canvas.create_rectangle(0, 0, G_WIDTH, G_HEIGHT, fill = 'black')
 		canvas.create_text(G_WIDTH / 2, G_HEIGHT / 2, text = u"\u2193Look at the console\u2193", font = ("Purisa", 72), fill = '#5858FA')
@@ -88,7 +88,13 @@ def pos_loop(canvas, root, M_WIDTH, M_HEIGHT, G_WIDTH, G_HEIGHT, maze, n = 4):
 		canvas.create_rectangle(G_WIDTH / M_WIDTH * x, G_HEIGHT / M_HEIGHT * y, 
 				G_WIDTH / M_WIDTH * (x + 1), G_HEIGHT / M_HEIGHT * (y + 1), fill = color)
 
-	canvas.itemconfig(id2, text = "  position: ("+str(x) + ", " + str(y) + ")\n  hunger: {}/100 \n  happy: {}/10\n  [q] or [esc] to exit \n  runtime: {}".format(person.hunger, round(person.happy, 3), int(time() - START_TIME)))
+	canvas.itemconfig(id2, text = "  position: ("+str(x) + ", " + str(y) + ")\n  hunger: {}/100 \n  happy: {}/10\n  [q] or [esc] to exit \n  runtime: {} seconds".format(person.hunger, round(person.happy, 3), int(time() - START_TIME)))
+	if round(time()-START_TIME)>90:
+		stopped = True
+		cause = "time"
+	if person.hunger <= 0:
+		stopped = True
+		cause = "hunger"
 	string = '  Stuff in Backpack'
 	for k, item in enumerate(person.backpack.backpack):
 		string += '\n\t-->' + item.name if k == active_item_index else '\n\t' + item.name
@@ -157,7 +163,7 @@ for item, n in enumerate(person.backpack.backpack):
 	string += '\n\t-->' + item.name if n == active_item_index else '\n\t' + item.name
 # canvas.create_rectangle(G_WIDTH, 0, T_WIDTH, T_HEIGHT, fill = "white")
 id1 = canvas.create_text(G_WIDTH,20,anchor=NW,width=180,text=string)
-status_text = "  hunger: {} \n  happy: {}\n  q or esc to exit \n  runtime: {}".format(person.hunger, person.happy, int(time() - START_TIME))
+status_text = "  hunger: {} \n  happy: {}\n  q or esc to exit \n  runtime: {} seconds".format(person.hunger, person.happy, int(time() - START_TIME))
 id2 = canvas.create_text(G_WIDTH, G_HEIGHT * 3 / 5, anchor = NW, text = status_text, font = "Purisa")
 
 for y in range(M_HEIGHT):
@@ -174,6 +180,7 @@ for y in range(M_HEIGHT):
 			G_WIDTH / M_WIDTH * (x + 1), G_HEIGHT / M_HEIGHT * (y + 1), fill = item_color)
 
 stopped = False
+cause = ""
 pos_loop(canvas, root, M_WIDTH, M_HEIGHT, G_WIDTH, G_HEIGHT, maze, stopped)
 root.mainloop()
 

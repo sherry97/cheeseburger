@@ -43,6 +43,14 @@ def main():
 	print(" you go, but keep an eye on your health status.")
 	import main_game
 	person = main_game.person
+	cause = main_game.cause
+	if cause == "time":
+		text.outro(0)
+		return
+	elif cause == "hunger":
+		print("exit for hunger")
+		text.outro(1)
+		return
 	print("-"*50)
 	print("            MAKE YOUR OWN CHEESEBURGER")
 	print("   choose one item from each of the following")
@@ -53,16 +61,12 @@ def main():
 	displayCheeseburgerStat(c)
 	print("-"*50)
 	person.eat(c)
-	if person.hunger <= 2:
-		text.outro(1)
-	elif person.hunger > 2 and person.happy <= 7:
+	if person.hunger > 2 and person.happy <= 7:
 		input("Press [enter] to continue.")
 		text.outro(3)
 	elif person.hunger > 2 and person.happy > 7:
 		input("Press [enter] to continue.")
 		text.outro(2)
-	else:
-		text.outro(0)
 	print()
 
 if __name__ == '__main__': main()
