@@ -31,7 +31,7 @@ def position_works(dx, dy):
 	return True
 
 def key(event):
-	global position, canvas, maze, person, stopped
+	global position, canvas, maze, person, stopped, active_item_index
 	"""shows key or tk code for the key"""
 	if event.keysym == 'Escape' or event.keysym == "q":
 		stopped = True
